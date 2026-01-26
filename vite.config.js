@@ -10,8 +10,8 @@ export default defineConfig({
     minify: true,
     lib: {
       entry: resolve(__dirname, 'www/index.ts'),
-      fileName: 'wlipsync',
-      formats: ['es'],
+      fileName: (format) => `wlipsync.${format}.js`,
+      formats: ['es', 'cjs'],
     },
   },
   publicDir: 'www/public/'

@@ -1,13 +1,29 @@
 import type { Profile } from "./types.js";
-import { WLipSyncAudioNode } from "./audio-node.js";
+import wasm from "./public/wlipsync.wasm?url";
+import audioProcessorUrl from './public/audio-processor.js?url';
+import { configuration, WLipSyncAudioNode } from "./audio-node.js";
 
-// NOTE: This convenience method is only needed for the single-file approach to
-//       lazy-load the processor in the audio worklet. For consistency it exists here
-//       as well.
+
+export async function init() {
+    if (configuration.wasmModule) {
+        return;
+    }
+    configuration.wasmModule = await WebAssembly.compileStreaming(fetch(wasm));
+}
+
 export async function createWLipSyncNode(audioContext: AudioContext, profile: Profile) {
-    return new WLipSyncAudioNode(audioContext, profile);
+    if (!configuration.wasmModule) {
+        throw new Error("Wlipsync is not initialized. Please call init() before creating a node.");
+    }
+    
+    try {
+        return new WLipSyncAudioNode(audioContext, profile);
+    } catch {
+        await audioContext.audioWorklet.addModule(audioProcessorUrl);
+        return new WLipSyncAudioNode(audioContext, profile);
+    }
 }
 
 export type * from './types.js';
 export * from './parse.js';
-export { configuration, WLipSyncAudioNode } from './audio-node.js';
+export { WLipSyncAudioNode } from './audio-node.js';

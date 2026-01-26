@@ -11,8 +11,8 @@ export default defineConfig({
     minify: 'terser',
     lib: {
       entry: resolve(__dirname, 'www/index-single.ts'),
-      fileName: 'wlipsync-single',
-      formats: ['es'],
+      fileName: (format) => `wlipsync-single.${format}.js`,
+      formats: ['es', 'cjs'],
     },
   }
 })

@@ -8,6 +8,7 @@
   "files": [
     "www/index.ts",
     "www/audio-node.ts",
-    "www/types.ts"
+    "www/types.ts",
+    "www/vite-env.d.ts"
   ]
 }
