@@ -6,6 +6,10 @@
 [![mastodon](https://flat.badgen.net/badge/mastodon/@noerihuisman@arvr.social/blue?icon=mastodon&label)](https://arvr.social/@noerihuisman)
 [![ko-fi](https://img.shields.io/badge/ko--fi-buy%20me%20a%20coffee-ff5f5f?style=flat-square)](https://ko-fi.com/fernsolutions)
 
+*This is a compatibility fork specialized for the **bolt-cep** Adobe extension framework. Unlike the original library, you **must manually call the `init()` function** before use (refer to `www/index.ts` for implementation details), as Top-level Await was removed to ensure compatibility with older CEF/Chromium environments.*
+
+
+
 A MFCC-based lip sync library for WebAudio using WASM. This is a port of the [uLipSync](https://github.com/hecomi/uLipSync) project.
 
 <img target="_blank" src="https://github.com/user-attachments/assets/e1df1cef-0e53-4651-88af-e771be454530" width="40%">
