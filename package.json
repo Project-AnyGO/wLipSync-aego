@@ -1,6 +1,6 @@
 {
   "name": "wlipsync-aego",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "MFCC-based lip-sync library using WASM and WebAudio based on uLipSync",
   "author": "Noeri Huisman",
   "license": "MIT",
@@ -28,7 +28,7 @@
     "url": "https://github.com/mrxz/wlipsync/issues"
   },
   "homepage": "https://github.com/mrxz/wlipsync",
- "exports": {
+  "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
       "import": "./dist/wlipsync.es.js",
