@@ -24,6 +24,16 @@ export async function createWLipSyncNode(audioContext: AudioContext, profile: Pr
     }
 }
 
+export async function getWasmModule(): Promise<WebAssembly.Module> {
+    if (!configuration.wasmModule) {
+        await init();
+    }
+    if (!configuration.wasmModule) {
+        throw new Error("WLipSync WASM module could not be initialized.");
+    }
+    return configuration.wasmModule;
+}
+
 export type * from './types.js';
 export * from './parse.js';
 export { WLipSyncAudioNode } from './audio-node.js';
